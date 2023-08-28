@@ -1,10 +1,32 @@
 import '@radix-ui/themes/styles.css';
-import { Theme } from '@radix-ui/themes';
+import {AlertDialog, Button, Flex, Theme} from '@radix-ui/themes';
 const RadixUi = () => {
     return (
-        <div>
+        <AlertDialog.Root>
+            <AlertDialog.Trigger>
+                <Button color="red">Revoke access</Button>
+            </AlertDialog.Trigger>
+            <AlertDialog.Content style={{ maxWidth: 450 }}>
+                <AlertDialog.Title>Revoke access</AlertDialog.Title>
+                <AlertDialog.Description size="2">
+                    Are you sure? This application will no longer be accessible and any
+                    existing sessions will be expired.
+                </AlertDialog.Description>
 
-        </div>
+                <Flex gap="3" mt="4" justify="end">
+                    <AlertDialog.Cancel>
+                        <Button variant="soft" color="gray">
+                            Cancel
+                        </Button>
+                    </AlertDialog.Cancel>
+                    <AlertDialog.Action>
+                        <Button variant="solid" color="red">
+                            Revoke access
+                        </Button>
+                    </AlertDialog.Action>
+                </Flex>
+            </AlertDialog.Content>
+        </AlertDialog.Root>
     );
 };
 
