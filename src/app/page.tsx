@@ -1,28 +1,58 @@
-'use client'
+"use client";
+// Material UI - Font
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+// Material UI - Components
+import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MediaCard from "@/components/Material UI/Card/media-card";
+import { pink, teal } from "@mui/material/colors";
+import { useState } from "react";
 
-import {Theme} from "@radix-ui/themes";
-import RadixUi from "@/components/UI/radixUI/radix-ui";
-import PopoverUi from "@/components/UI/radixUI/popover-ui";
-import DefaultBlur from "@/components/NextImage/static/defaultBlur";
-import Picture from "@/../public/images/pic-one.jpg"
-import CustomImage from "@/components/UI/customImage/custom-image";
-import Button from "@/components/tailwind/Button";
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: pink[700],
+    },
+    secondary: {
+      main: teal[600],
+    },
+  },
+});
 
-export default function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined }}) {
+const getProducts = async () => {
+  const res = await fetch("https://dummyjson.com/products");
+  if (!res.ok) throw new Error("Product not found");
+  return new Promise(resolve => {
+    setTimeout(() => {
+      return resolve(res.json());
+
+    }, 1000)
+  })
+}
+export default async function Home() {
+  const data = await getProducts();
   return (
-      <>
-          {/*<Pagination searchParams={searchParams['page'] ?? '1'} per_page={searchParams['per_page'] ?? '5'}/>*/}
-          {/*<DefaultBlur src={Picture} />*/}
-          {/*<Blur src={Picture} />*/}
-          {/*<AbortControllerCom />*/}
-          <div className={"relative w-[400px] h-[400px]"}>
-              <CustomImage src={"/images/pic-one.jpg"} alt={"picture"} priority />
-          </div>
-          <Button title={"Button"} className={"text-emerald-300 hover:bg-pink-800"} />
-          <Theme>
-              <RadixUi />
-              <PopoverUi />
-          </Theme>
-      </>
-  )
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline enableColorScheme />
+      {/*<ButtonUsage />*/}
+      <section className={"max-w-max h-96 mx-auto mt-10"}>
+        {data?.products.map((item?: object) => {
+          // @ts-ignore
+          const {id, thumbnail, title, description} = item;
+          return (
+            <MediaCard
+              heading={title}
+              text={description}
+              key={id}
+              src={thumbnail}
+            />
+          );
+        })}
+      </section>
+    </ThemeProvider>
+  );
 }
