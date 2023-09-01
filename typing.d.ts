@@ -10,9 +10,19 @@ export type CustomImageProps = {
     sizes?: string,
 }
 
-type ImageProps = {
+export type ImageProps = {
     title: string;
     type?: "submit" | "reset" | "button" | undefined;
     className: string;
     isPending?: boolean;
 }
+
+const routes = {
+    home: "/",
+    admin: "/admin",
+    users: "/users",
+} as const;
+
+type Route = (typeof routes)[keyof typeof routes]
+const gotoRoute = (route: Route) => {}
+gotoRoute("")
