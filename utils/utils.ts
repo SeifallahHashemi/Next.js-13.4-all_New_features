@@ -16,3 +16,6 @@ export async function stop(id: string | undefined, name: string | undefined): Pr
         }, 2000)
     })
 }
+export async function delay(ms: number): Promise<void> {
+    return new Promise<void>((resolve) => setTimeout(resolve, ms))
+}

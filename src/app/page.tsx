@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import DownloadButtonProgress from "@/components/download-button-progress/download-button-progress";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className={"h-screen grid place-items-center bg-rose-500"}>
-      <DownloadButtonProgress />
+        <h1>Hello World</h1>
     </div>
   );
 }
