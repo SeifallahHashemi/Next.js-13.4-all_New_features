@@ -1,4 +1,4 @@
-import getBase64 from "../../../../lib/getBase64";
+import getBase64 from "../../../../utils/getBase64";
 import Image from "next/image";
 import picture from "../../../../public/images/pic-one.jpg"
 
