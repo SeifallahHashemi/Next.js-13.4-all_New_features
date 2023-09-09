@@ -5,7 +5,7 @@ import RouteIntercepting from "@/components/Next-js Route Intercepting/route-int
 export default function Home() {
   return (
     <div className={"h-screen grid place-items-center bg-rose-500"}>
-        <RouteIntercepting />
+        Hello World
     </div>
   );
 }
