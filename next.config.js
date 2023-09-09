@@ -2,7 +2,8 @@ const {hostname} = require("os");
 const hostnames = [
   'source.unsplash.com',
   'i.dummyjson.com',
-  'wembleypark.com']
+  'wembleypark.com',
+  'pbs.twimg.com']
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
