@@ -19,3 +19,6 @@ export async function stop(id: string | undefined, name: string | undefined): Pr
 export async function delay(ms: number): Promise<void> {
     return new Promise<void>((resolve) => setTimeout(resolve, ms))
 }
+export async function simulateDelay(data: string, ms: number): Promise<string> {
+    return new Promise<string>((resolve) => setTimeout(() => resolve(data), ms))
+}

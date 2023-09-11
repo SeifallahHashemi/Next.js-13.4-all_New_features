@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import QueryProvider from "@/app/query-provider";
 import Providers from "@/app/providers";
-import Navigation from "@/components/Kinde_com-authentication/navigation";
+// import Navigation from "@/components/Kinde_com-authentication/navigation";
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryProvider>
           <Providers>
-            <Navigation />
+            {/*<Navigation />*/}
             {children}
           </Providers>
         </QueryProvider>
