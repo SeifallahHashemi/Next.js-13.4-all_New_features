@@ -1,5 +1,8 @@
 import React from 'react';
 import Product from "@/components/UI/product/Product";
+import {notFound} from "next/navigation";
+
+// export const dynamicParams = true // this is default export in Next.js
 
 type Products = {
     product: string;
@@ -9,9 +12,9 @@ type Products = {
 };
 export async function generateStaticParams() {
     const posts = await fetch('https://64db99de593f57e435b13182.mockapi.io/products').then((res) => res.json())
-
-    return posts.map((post: { id: string }) => ({
-      id: [post.id],
+    const trimmedPosts = posts.splice(0, 10);
+    return trimmedPosts.map((post: { id: string }) => ({
+      id: [post.id.toString()],
     }));
 }
 const getProducts = async (ids: string) => {
@@ -26,7 +29,9 @@ const getProducts = async (ids: string) => {
 const ProductPage = async ({ params }: {params: { id: string}}) => {
     const { id } = params;
     const products: Products[] = await getProducts(id)
-    console.log(products)
+    products.forEach((product) => {
+        if (!product.product) return notFound()
+    })
     return (
         <div className={"max-w-7xl mx-auto flex flex-col space-y-3"}>
             {products.length > 0 ? products.map((product) => {
